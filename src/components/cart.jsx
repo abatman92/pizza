@@ -14,9 +14,9 @@ export const Cart = () => {
   const itemsTotalprice = itemsArr.reduce((acc, [key, value]) => {
     return [...acc, value.reduce((acc, item) => acc + item.price, 0)]
   }, [])
-  const itemQuantity = (i) => items[i].length
-  console.log(itemQuantity(0))
- console.log(itemQuantity(0))
+  const itemQuantity = (index) => {
+    return items[index].length;
+  };
   return itemsArr.length > 0 ? (
     <div className="container container--cart">
       <div className="cart">

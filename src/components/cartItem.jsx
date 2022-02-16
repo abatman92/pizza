@@ -20,6 +20,11 @@ export const CartItem = ({totalPrice, name, imageUrl, totalQuantiity}) => {
         <div className="cart__item-price">
           <b>{totalPrice} ₽</b>
         </div>
+        <div className="cart__item-remove">
+    <div className="button button--outline button--circle">
+      {delSvg}
+    </div>
+  </div>
       </div>
     );
 }
