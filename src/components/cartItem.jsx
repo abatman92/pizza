@@ -1,4 +1,4 @@
-import { delSvg, minusSvg, plusCartSvg } from "./svg";
+import { delSvg } from "./svg";
 
 export const CartItem = ({totalPrice, name, id, imageUrl, totalQuantiity, removeItem}) => {
     return (

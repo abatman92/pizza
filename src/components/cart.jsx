@@ -8,13 +8,19 @@ import { arrowLeftSvg, bigCartSvg, bucketSvg } from "./svg";
 export const Cart = () => {
   const dispatch = useDispatch()
   const makeCartClear = useCallback(() => dispatch(RemoveAllCartItems()));
-  const { totalPrice, itemsInCart, items, counts } = useSelector(({ cart }) => cart);
+  const { totalPrice, itemsInCart, items } = useSelector(({ cart }) => cart);
   const itemsArr = Object.entries(items)
   const itemsHeadings = itemsArr.map(([key, value]) => value[0])
   const itemsTotalprice = itemsArr.reduce((acc, [key, value]) => {
     return [...acc, value.reduce((acc, item) => acc + item.price, 0)]
   }, [])
   const removeItem = useCallback((id) => dispatch(RemoveCurrentItem(id)))
+  const currentPizzaCount = (index) => {
+    console.log(index)
+    if (items[index]) {
+      return items[index].length;
+    }
+  };
   return itemsArr.length > 0 ? (
     <div className="container container--cart">
       <div className="cart">
@@ -33,7 +39,7 @@ export const Cart = () => {
             <CartItem
               key={item.name}
               removeItem={removeItem}
-              totalQuantiity={counts[item.id]}
+              totalQuantiity={currentPizzaCount(item.id)}
               totalPrice={itemsTotalprice[i]}
               {...item}
             />
