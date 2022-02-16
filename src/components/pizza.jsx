@@ -1,12 +1,30 @@
 import cn from "classnames";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { plusSvg } from "./svg";
 
+const thicknesses = ["тонкое", "толстое"]
 
-export const Pizza = ({id, imageUrl="", name="", types=[0, 1], sizes=[26, 30, 40], price=0}) => {
-    const thicknesses = ["тонкое", "толстое"]
+export const Pizza = ({id, imageUrl="", name="", types=[0, 1], sizes=[26, 30, 40], price=0, clickToAdd, count}) => {  
     const [thickness, setThickness] = useState(types[0]);
-    const [size, setSize] = useState(0)
+    const [size, setSize] = useState(sizes[0])
+    const [currentPrice, setCurrentPrice] = useState(price)
+    const clicAddPizza = () => clickToAdd({id, name, price: currentPrice, imageUrl, type:thicknesses[thickness], size})
+    const setSizeAndPrice = useCallback((item) => {
+      setSize(item);
+      setCurrentPrice(() => {
+        switch(item) {
+          case 26: {
+            return price
+          }
+          case 30: {
+            return Math.round(price * 1.3)
+          }
+          case 40: {
+            return Math.round(price * 1.8)
+          }
+        }}
+      )
+    })
     return (
       <div className="pizza-block">
         <img
@@ -23,16 +41,16 @@ export const Pizza = ({id, imageUrl="", name="", types=[0, 1], sizes=[26, 30, 40
     })}>{item}</li>)}
           </ul>
           <ul>
-            {sizes.map((item, i) => <li onClick={() => setSize(i)} className={i === size ? "active" : ""} key={item+"__"+i}>{item} см.</li>)}
+            {sizes.map((item, i) => <li onClick={() => setSizeAndPrice(item)} className={item === size ? "active" : ""} key={item+"__"+i}>{item} см.</li>)}
           </ul>
         </div>
         <div className="pizza-block__bottom">
-          <div className="pizza-block__price">от {price} ₽</div>
-          <div className="button button--outline button--add">
+          <div className="pizza-block__price">{currentPrice} ₽</div>
+          <button className="button button--outline button--add" onClick={clicAddPizza}>
             {plusSvg}
             <span>Добавить</span>
-            <i>2</i>
-          </div>
+            {count && <i>{count}</i>}
+          </button>
         </div>
       </div>
     );

@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import { Header, Content, Cart} from "./components/index";
+import { Header, Content, CartEmpty, Cart} from "./components/index";
 
 
 function App() {
