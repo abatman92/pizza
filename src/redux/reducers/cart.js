@@ -37,7 +37,7 @@ export const cart = (state = InitialState, action) => {
             };
         }
         case "RemoveCurrentItem": {
-          const newItems = state.items;
+          const newItems = Object.assign({}, state.items);
           delete newItems[action.payload];
           const newItemsArr = Object.values(newItems).reduce((acc, item) => {
             return [...acc, ...item];

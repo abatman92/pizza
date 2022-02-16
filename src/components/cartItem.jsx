@@ -12,7 +12,7 @@ export const CartItem = ({totalPrice, name, id, imageUrl, totalQuantiity, remove
         </div>
         <div className="cart__item-info">
           <h3>{name}</h3>
-          <p>тонкое тесто, 26 см.</p>
+          <p></p>
         </div>
         <div className="cart__item-count">
           <b>Кол-во: {totalQuantiity}</b>
