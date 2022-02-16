@@ -1,6 +1,6 @@
 import { delSvg, minusSvg, plusCartSvg } from "./svg";
 
-export const CartItem = ({totalPrice, name, imageUrl, totalQuantiity}) => {
+export const CartItem = ({totalPrice, name, id, imageUrl, totalQuantiity, removeItem}) => {
     return (
       <div className="cart__item">
         <div className="cart__item-img">
@@ -21,7 +21,7 @@ export const CartItem = ({totalPrice, name, imageUrl, totalQuantiity}) => {
           <b>{totalPrice} ₽</b>
         </div>
         <div className="cart__item-remove">
-    <div className="button button--outline button--circle">
+    <div onClick={() => removeItem(id)} className="button button--outline button--circle">
       {delSvg}
     </div>
   </div>

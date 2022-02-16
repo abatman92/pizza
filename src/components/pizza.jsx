@@ -8,7 +8,7 @@ export const Pizza = ({id, imageUrl="", name="", types=[0, 1], sizes=[26, 30, 40
     const [thickness, setThickness] = useState(types[0]);
     const [size, setSize] = useState(sizes[0])
     const [currentPrice, setCurrentPrice] = useState(price)
-    const clicAddPizza = () => clickToAdd({id, name, price: currentPrice, imageUrl, type:thicknesses[thickness], size})
+    const clicAddPizza = () => clickToAdd({pizzaInfo: {id, name, price: currentPrice, imageUrl, type:thicknesses[thickness], size}, count: count + 1})
     const setSizeAndPrice = useCallback((item) => {
       setSize(item);
       setCurrentPrice(() => {

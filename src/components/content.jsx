@@ -42,7 +42,7 @@ export const Content = () => {
   const renderPizzaItems = items.map((item, i) => (
     isLoaded ? <Pizza key={item.id} clickToAdd={clickToAdd} count={currentPizzaCount(i)} {...item} /> : <PizzaLoader key={item.id+"_loader"} /> 
   ))
-  
+
   return (
     <div className="content">
       <div className="container">
